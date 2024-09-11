@@ -3,6 +3,7 @@ name: Instagram Poster
 on:
   schedule:
     - cron: '0 8,14,20 * * *'
+  workflow_dispatch: # Adiciona a capacidade de executar manualmente
 
 jobs:
   build:
