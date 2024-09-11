@@ -11,12 +11,15 @@ openai.api_key = os.getenv('OPENAI_API_KEY')
 # Função para gerar frase motivacional
 def generate_motivational_quote(theme):
     print(f"Gerando frase motivacional para o tema: {theme}")
-    response = openai.Completion.create(
-        engine="text-davinci-003",
-        prompt=f"Crie uma frase motivacional sobre {theme}.",
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "Você é um gerador de frases motivacionais."},
+            {"role": "user", "content": f"Crie uma frase motivacional sobre {theme}."}
+        ],
         max_tokens=50
     )
-    return response.choices[0].text.strip()
+    return response.choices[0].message['content'].strip()
 
 # Função para criar imagem com a frase
 def create_image_with_quote(quote, theme):

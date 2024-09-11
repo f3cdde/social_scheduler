@@ -9,6 +9,10 @@ schedule.every().day.at("20:00").do(main)
 
 print("Agendamentos configurados. Aguardando para executar...")
 
+def run_manual():
+    print("Executando postagem manual...")
+    main()
+
 while True:
     schedule.run_pending()
     time.sleep(1)
